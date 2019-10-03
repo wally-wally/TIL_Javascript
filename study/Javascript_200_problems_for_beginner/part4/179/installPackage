@@ -1,6 +1,0 @@
-npm install npm@6.4.1 -g
-npm -v
-npm init
-npm install request --save
-npm install cheerio --save
-npm install socket.io --save
