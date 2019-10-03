@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Brush+Script|Nanum+Pen+Script|Pacifico|Sacramento&subset=korean');
+body {
+  font-family: 'Nanum Pen Script', cursive !important;
+  background: #606c88;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header {
+  padding: 30px 0px;
+}
+
+header.top .logo {
+  text-align: center;
+}
+
+header.top .logo a {
+  font-family: 'Pacifico', cursive;
+  color: #FEFFFF;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+section.main {
+  text-align: center;
+  color: #bebfc3;
+}
+.number-selector {
+  text-align: center;
+  margin: 43px;
+}
+.number-circle {
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 120px;
+  line-height: 113px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 65px;
+  color: #FEFFFF; 
+  border: 2px solid #25232F;
+  background-color: #25232F;
+}
+.number-circle input {
+  width: 120px;
+  background: rgba(0,0,0,0);
+  border: none;
+  text-align: center;
+  outline: 0;
+}
+input[type=number]::-webkit-inner-spin-button {
+  display: none;
+}
+.number-circle input:focus {
+  border: none;
+  text-align: center;
+  outline-color: unset;
+}
+
+/* App 처음 화면 */
+.logo {
+  text-align: center;
+}
+
+.logo h1 {
+  color: #FEFFFF;
+  opacity: 0.8;
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.logo img {
+  width: 129px;
+}
+
+a.btn.btn-default {
+  font-size: 32px;
+  font-weight: 100;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 12px;
+  border-width: 2px;
+  border-color: white;
+}
+a.btn-default:active:focus, 
+a.btn-default:active:active {
+  background-color: transparent;
+  opacity: 0.6;
+  color: #fff;
+  border-radius: 12px;
+  border-width: 2px;
+  border-color: white;
+}
+
+.game-main .form-group label {
+  font-size: 20px;
+}
+
+.game-main .guess {
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 8px;
+}
+
+.result-container {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 24px;
+}
+
+.result-container .list-group-item {  
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(62, 65, 76, .8);
+  color: white;
+  margin-bottom: 10px;
+}
+
+
+.badge.result {
+  padding: 5px 7px;
+  font-size: 20px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%
+}

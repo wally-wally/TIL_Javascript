@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM 생성과 수정 그리고 삭제하기</title>
+</head>
+<body>
+  <h2>상품 목록</h2>
+  <ul id="product-list">
+  </ul>
+  <script>
+    const products = [
+      { id: 'p-01', name: '상품1' },
+      { id: 'p-02', name: '상품2' },
+      { id: 'p-03', name: '상품3' }
+    ]
+    const productListEl = document.getElementById('product-list');
+    products
+      .map(product => {
+        const newEl = document.createElement('li');
+        newEl.id =  product.id;
+        newEl.innerText = product.name;
+        return newEl;
+      })
+      .forEach(productEl => {
+        productListEl.appendChild(productEl);
+      });
+    setTimeout(() => {
+      const secondEl = document.querySelector('ul li:nth-child(2)');
+      secondEl.remove();
+    }, 1000);
+    productListEl.after("<div>잘못된 사용</div>");
+    productListEl.insertAdjacentHTML('afterend',"<p>추가된 문단</p>");
+  </script>
+</body>
+</html>

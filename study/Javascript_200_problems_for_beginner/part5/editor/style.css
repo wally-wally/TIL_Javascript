@@ -1,0 +1,27 @@
+.editor {
+  min-height: 150px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.toolbar {
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+}
+
+.toolbar a {
+  border: 1px solid #AAA;
+  background: #FFF;
+  color: black;
+  padding: 4px;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 0px 1px 0px #CCC;
+}
+
+.toolbar a:hover {
+  background: #f2f2f2;
+  border-color: #8c8c8c;
+}

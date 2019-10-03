@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    .notification-bar {
+      padding: 10px;
+      border: 1px solid black;
+      background-color: yellow;
+      position: absolute;
+    }
+  </style>
+  <title>DOM 스타일 예제</title>  
+</head>
+<body>
+<script>
+  class NotificationBar {
+    constructor() {
+      this.barEl = document.createElement('div');
+      this.barEl.style.display = "none";
+      this.barEl.classList.add("notification-bar")
+      document.body.appendChild(this.barEl);
+    }
+    show(message, position = "top") {
+      if (position === "top") {
+        this.barEl.style.top = "10px";
+        this.barEl.style.bottom = "";
+      }
+      if (position === "bottom") {
+        this.barEl.style.top = "";
+        this.barEl.style.bottom = "10px";
+      }
+      this.barEl.style.left = "10px";
+      this.barEl.style.right = "10px";
+      this.barEl.style.display = "";
+      this.barEl.innerHTML = message;
+    }
+  }
+
+  const noti = new NotificationBar();  
+  setTimeout(() => {
+    noti.show('welcome to JavaScript 200');  
+  }, 1000);
+
+  setTimeout(() => {
+    noti.show('welcome to JavaScript 200', 'bottom');
+  }, 2000);
+</script>
+</body>
+</html>

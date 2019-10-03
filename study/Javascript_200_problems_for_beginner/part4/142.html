@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DOM 네비게이션 예제</title>
+  <link rel="stylesheet" href="css/dom-navigation.css">
+</head>
+<body>
+  <h1>국내여행지</h1>
+  <ul>
+    <li>서울</li>
+    <!-- <li>수원</li> -->
+    <li>제주</li>
+    <li>속초</li>
+    <li>부산</li>
+  </ul>
+  <script>
+    const bodyEl = document.body;
+    const bodyElChildren = bodyEl.children;
+    console.log(bodyElChildren);
+
+    const cityList = bodyElChildren[1];
+
+    console.log(cityList.children.length);
+    const item2 = cityList.children.item(1);
+    console.log(item2);
+    console.log(item2.previousElementSibling);
+    console.log(item2.previousSibling);
+    console.log(item2.previousSibling.previousSibling);
+    console.log(cityList.childNodes);
+    console.log(item2.firstChild);
+    console.log(item2.lastChild);
+    console.log(item2.parentElement);
+  </script>
+</body>
+</html>

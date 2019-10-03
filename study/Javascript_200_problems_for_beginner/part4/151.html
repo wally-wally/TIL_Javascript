@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">    
+  <title>HTML 폼 활용하기 예제</title>
+</head>
+<body>
+  <form name="order">
+    <fieldset name="userInfo">
+      <legend>주문자 정보</legend>
+      이름: <input name="name" type="text">
+      전화번호: <input name="tel" type="tel">      
+    </fieldset>
+    <fieldset name="productInfo">
+      <legend>상품 정보</legend>      
+      상품명: <input name="productName" type="text">
+      색상: 
+      <select name="color">
+        <option value="black">검은색</option>
+        <option value="yellow">노란색</option>
+      </select>
+    </fieldset>
+    <button id="btn1" type="button">button 처리</button>
+    <button type="submit">submit 제출</button>
+  </form>
+  <script>    
+    const orderForm = document.forms.order,
+          userField = orderForm.elements.userInfo,
+          productField = orderForm.elements.productInfo;
+    document.getElementById('btn1')
+      .addEventListener('click', e => {
+        const { name, tel } = userField.elements;
+        console.log(`${name.value} 사용자(${tel.value})로 주문합니다.`);
+      });
+    orderForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const { productName, color } = productField.elements;
+      console.log(
+        `${productName.value} 상품 ${color.value}색을 주문합니다.`
+      );
+
+      orderForm.method = 'GET';
+      orderForm.submit();
+    });
+  </script>
+</body>
+</html>

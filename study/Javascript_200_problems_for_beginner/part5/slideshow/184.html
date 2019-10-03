@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>멀티 슬라이드쇼 만들기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>국내 여행</h1>
+  <div class="slider">
+    <div class="slider-btn-wrapper slider-btn-wrapper-left">
+      <button id="left-btn" class="slider-btn">&larr;</button>
+    </div>
+    <div class="item-wrapper">
+      <div class="item">
+        <img src="./images/seoul.jpg"/>
+        <div class="title">
+          <h2>서울</h2>
+          <p>3000원</p>
+        </div>
+      </div>
+      <div class="item">
+        <img src="./images/jeju.jpg"/>
+        <div class="title">
+          <h2>제주도</h2>
+          <p>4000원</p>
+        </div>
+      </div>
+      <div class="item">
+        <img src="images/suwon.jpg"/>
+        <div class="title">
+          <h2>수원</h2>
+          <p>3000원</p>
+        </div>
+      </div>
+      <div class="item">
+        <img src="./images/muju.jpg"/>
+        <div class="title">
+          <h2>무주</h2>
+          <p>5000원</p>
+        </div>
+      </div>
+    </div>
+    <div class="slider-btn-wrapper slider-btn-wrapper-right">
+      <button id="right-btn" class="slider-btn">&rarr;</button>
+    </div>
+  </div>
+  <script>
+  (function() {
+    const itemWrapperEl = document.querySelector('.item-wrapper'),
+          leftBtnEl = document.getElementById('left-btn'),
+          rightBtnEl = document.getElementById('right-btn');
+
+    function moveSlides(direction) {
+      const item = itemWrapperEl.querySelector('.item'),
+            itemMargin = parseFloat(getComputedStyle(item).marginRight);
+            itemWidth = itemMargin + item.offsetWidth + 2;
+
+      let itemCount = Math.round(itemWrapperEl.scrollLeft / itemWidth);
+
+      if (direction === 'left') {
+        itemCount = itemCount - 1;
+      } else {
+        itemCount = itemCount + 1;
+      }
+      itemWrapperEl.scrollLeft = itemWidth * itemCount;
+    }
+
+    leftBtnEl.addEventListener("click", e => moveSlides("left"));
+    rightBtnEl.addEventListener("click", e => moveSlides("right"));
+  })();
+  </script>
+</body>
+</html>

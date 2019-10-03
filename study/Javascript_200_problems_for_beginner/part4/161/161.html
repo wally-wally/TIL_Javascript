@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>웹워커 예제</title>
+</head>
+<body>
+  <div>
+    <input type="number" id="number">
+    <button id="start-btn">피보나치수열 계산시작</button>      
+  </div>
+  <div id="result"></div>
+  <script>
+    const result = document.getElementById('result');
+    let isCalculation = false;
+    if (window.Worker) {
+      const fibonacciWorker = new Worker('fibonacci.js');
+      document.getElementById('start-btn')
+        .addEventListener('click', e => {
+          if (isCalculation) {
+            return;
+          }
+          const value = document.getElementById('number').value;
+          fibonacciWorker.postMessage({ num: value });
+          result.innerHTML = '계산중...';
+          isCalculation = true;
+        });
+      fibonacciWorker.onmessage = function(e) {
+        result.innerHTML= e.data;
+        isCalculation = false;
+      };
+      fibonacciWorker.onerror = function(error) {
+        console.error('에러 발생', error.message);
+        result.innerHTML= error.message;
+        isCalculation = false;
+      };
+    }
+  </script>
+</body>
+</html>

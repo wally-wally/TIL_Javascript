@@ -1,0 +1,22 @@
+<script>
+  function submitForm() {
+    const form = document.getElementById('card-form');
+    const formData = new FormData(form);
+    const formObj = {
+      cardNumber: formData.get("cardNumber"),
+      holderName: formData.get("holderName"),
+    }
+    window.parent.postMessage(formObj, '*');
+  }
+</script>
+<form id="card-form" onsubmit="submitForm()">
+  <div>
+    <label>카드번호</label>
+    <input type="text" name="cardNumber">
+  </div>
+  <div>
+    <label>이름</label>
+    <input type="text" name="holderName">
+  </div>
+  <button type="submit">결제하기</button>
+</form>

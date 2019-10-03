@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch API 예제</title>
+</head>
+<body>
+<div id="user"></div>
+<script>
+const userEl = document.getElementById('user');
+const reqPromise = 
+  fetch('https://api.github.com/users/jeado', { 
+    headers: { Accept: 'application/json' },
+    method: 'GET'
+  });
+reqPromise
+  .then(res => {
+    if (res.status >= 200 && res.status < 300) {
+      return res.json();
+    } else {
+      return Promise.reject(new Error(`Got status ${res.status}`));
+    }
+  })
+  .then(user => {
+    userEl.innerHTML =
+      `<img src="${user.avatar_url}" /> 
+       <br> 사용자이름 : ${user.login}, 깃헙주소: ${user.html_url}`
+  })
+  .catch(error => alert(error));
+</script>
+</body>
+</html>

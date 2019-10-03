@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>할일 앱 만들기 예제</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script src="src/models.js"></script>
+  <script>
+    const todos = new TodoManager();
+    todos.addTodo('공부하기');
+    todos.addTodo('운동하기');
+    console.log(todos.getList());
+    console.log(todos.leftTodoCount);
+    todos.getList()[0].toggle()
+    console.log(todos.leftTodoCount);
+  </script>
+</body>
+</html>

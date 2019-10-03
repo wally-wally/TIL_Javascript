@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>XMLHttpRequest 예제</title>
+</head>
+<body>
+<div id="user"></div>
+<script>
+function httpGet(url, successCallback, errorCallback) {
+  const req = new XMLHttpRequest();
+  req.onload = () => {
+    if (req.status >= 200 && req.status < 300) {
+      successCallback(req.response);
+    } else { 
+      errorCallback(new Error(req.statusText));
+    }
+  }
+  req.onerror = errorCallback;
+  req.open('GET', url);
+  req.setRequestHeader('Accept', 'application/json');
+  req.send();
+}
+
+const userEl = document.getElementById('user');
+
+httpGet('https://api.github.com/users/jeado', 
+  data => {
+    const user =  JSON.parse(data);
+    userEl.innerHTML = 
+      `<img src="${user.avatar_url}" /> 
+       <br> 사용자이름 : ${user.login}, 깃헙주소: ${user.html_url}`
+  }, error => alert(error));
+</script>  
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>브라우저 히스토리 이해하기 예제</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <ul class="user-list">
+    <li data-name="jay">jay</li>
+    <li data-name="bbo">bbo</li>
+    <li data-name="harin">harin</li>
+  </ul>
+  <script>
+    const userList = document.querySelector('.user-list');
+
+    userList.addEventListener('click', e => {
+      const liEl = e.target;
+      if (liEl.tagName === 'LI') {
+        const name = liEl.dataset.name;
+        select(userList, liEl);
+        history.pushState(name, null, name);
+      }
+    })
+
+    window.addEventListener('popstate', function (e) {
+      const selectedUser = document
+        .querySelector(`.user-list [data-name="${e.state}"]`);
+      select(userList, selectedUser);
+    });
+
+    function select(ulEl, liEl) {
+      Array.from(ulEl.children)
+        .forEach(v => v.classList.remove('selected'));
+      if (liEl) liEl.classList.add('selected');
+    }
+  </script>
+</body>
+</html>

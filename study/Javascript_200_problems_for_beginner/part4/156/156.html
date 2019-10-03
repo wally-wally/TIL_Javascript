@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"> 
+  <title>로컬 파일을 브라우저에서 읽기 예제</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="file-box" class="dot-box">
+    이미지 파일을 선택한 후 이곳에 끌어서 놓아주세요.
+  </div>
+  <output id="result"></output>
+  <script>
+    var dropZone = document.getElementById('file-box');
+    dropZone.addEventListener('dragover', e => {
+      e.stopPropagation();
+      e.preventDefault();
+    });
+    dropZone.addEventListener('drop', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const files = e.dataTransfer.files;      
+      Array.from(files)
+        .filter(file => file.type.match('image.*'))
+        .forEach(file => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const imgEl = document.createElement('img');
+            imgEl.src = e.target.result;
+            imgEl.title = file.name;
+            document.getElementById('result').appendChild(imgEl);
+          };
+          reader.readAsDataURL(file);
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+* { margin: 0; }
+.hero {
+  height: 100px;
+  padding: 20px;
+  text-align: center;
+  background-color: #ccc;
+}
+nav {
+  background-color: black;
+  padding: 10px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+.articles { height: 2000px; }
