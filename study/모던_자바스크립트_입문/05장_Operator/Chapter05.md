@@ -72,6 +72,8 @@
 
 ### 2.2 문자열을 조작하는 메서드
 
+- 아래 예시 구문을 직접 작성하고 출력을 확인하여 각 메서드의 동작 원리를 익혀보자
+
 ```javascript
 let string = "Respect yourself and others will respect you."
 let string2 = "We aim above the mark to hit the mark."
@@ -103,30 +105,100 @@ console.log(string3.toUpperCase())
 console.log(string.trim())
 ```
 
-```
-45
-p
-Respect yourself and others will respect you.We aim above the mark to hit the mark.
-Respect yourself and others will respect you.We aim above the mark to hit the mark.Don't find fault, find a remedy.
-Respect yourself and others will respect you.We aim above the mark to hit the mark.Don't find fault, find a remedy.
-true
-false
-8
-41
-Respect yourself and others will respect you.Respect yourself and others will respect you.
-Good yourself and others will respect you.
-ect yourself and others will respect you.
-esp
-edy.
-edy
-[ 'Respect', 'yourself', 'and', 'others', 'will', 'respect', 'you.' ]
-[ 'Respect', 'yourself', 'and' ]
-false
-true
-pe
+<br>
 
-don't find fault, find a remedy.
-DON'T FIND FAULT, FIND A REMEDY.
-Respect yourself and others will respect you.
-```
+## 3. 연산자
+
+### 3.1 동일 연산자(`==`)
+
+- 좌변과 우변의 피연산자가 같은지 판별
+- 내부적으로는 좌우 피연산자의 타입을 변환한 다음에 좌변과 우변이 같은지 <b>느슨하게 비교</b>
+
+#### (1) 좌우 피연산자의 타입이 같을 때
+
+- 같은 객체를 가리킬 때 true, 다르면 false로 판정
+
+> [예시]
+>
+> ```javascript
+> let a = ['w', 'x', 'y', 'z']
+> let b = ['w', 'x', 'y', 'z']
+> let c = a
+> console.log(a == b) // false
+> console.log(a == c) // true
+> ```
+>
+> 변수 a와 b에는 모두 배열의 참조가 저장되어 있다.
+>
+> 각 배열에는 같은 데이터가 담겨 있지만 메모리에서 차지하는 위치가 다르다.
+>
+> 따라서 a 값과 b 값이 다르다고 판정한다.
+
+<br>
+
+#### (2) 좌우 피연산자의 타입이 다를 때
+
+- 이때는 두 피연산자가 같은 타입이 되도록 타입을 변환한 다음에 다음 규칙에 따라 동일한지 판별한다.
+  - `undefined`와 `null`은 같은 것으로 친다.
+  - 한쪽이 숫자고 다른 한 쪽이 문자열이면 문자열을 숫자로 변환해서 비교한다.
+  - 둘 중에 한쪽이 논리값이 true는 1, false는 0으로 변환해서 비교한다.
+  - 한쪽이 객체고 다른 한쪽이 숫자 또는 문자열이면 객체를 `toString`이나 `valueOf` 매서드를 사용해서 원시 타입으로 변환한 다음에 비교한다.
+  - 앞의 규칙에서 벗어나면 모두 `같지 않음`으로 판정한다.
+
+> [예시] 아래 구문은 모두 true를 출력한다.
+>
+> ```javascript
+> null == undefined
+> 1 == '1'
+> '0xff' == 255
+> true == 1
+> true == '1'
+> (new String('a')) == 'a'
+> (new Number(3)) == 3
+> [9] == 9
+> ```
+
+<br>
+
+### 3.2 일치 연산자(`===`)
+
+- 피연산자를 평가한 후에 타입을 변환하지 않은 상태의 두 값을 <b>엄격하게 비교</b>
+- 타입과 값이 모두 같으면 같다고 판정하고 그렇지 않으면 같지 않다고 판정
+  - 단, `NaN` 만큼은 `NaN`을 포함한 모든 값과 같지 않다고 판정 (`NaN === NaN` => `false`)
+  - 즉, `NaN`은 `x !== x`를 만족하는 유일한 값임을 확인할 수 있다.
+  - 변수 값이 `NaN`인지는 `isNaN` 함수로도 확인할 수 있다.
+
+> [예시] 아래 구문은 모두 false를 출력한다.
+>
+> ```javascript
+> null === undefined
+> 1 === '1'
+> '0xff' === 255
+> true === 1
+> true === '1'
+> (new String('a')) === 'a'
+> (new Number(3)) === 3
+> [9] === 9
+> ```
+
+:heavy_check_mark: **그래서 자바스크립트로 프로그래밍할 때 if문에서 같은지 확인하는 구문을 작성할 때 동일 연산자(`==`)보다 일치 연산자(`===`)를 사용하도록 습관화하자!**
+
+<br>
+
+### 3.3 논리 연산자
+
+#### (1) 논리 연산자의 종류
+
+- `a && b` (논리곱) : a와 b 모두 true면 true, 그 외에는 false
+- `a || b` (논리합) : a와 b 중 하나라도 true면 true, 모두가 false면 false
+- `!a` (부정) : a가 true면 false, false면 true
+
+<br>
+
+#### (2) 논리 연산을 할 때의 타입 변환
+
+| 피연산자                                                    | 평가되는 값 |
+| ----------------------------------------------------------- | ----------- |
+| 0, -0, empty string, NaN, null, undefined                   | `false`     |
+| 0을 제외한 숫자, 빈 문자열을 제외한 문자열, 모든 객체, 심벌 | `true`      |
 
