@@ -1,22 +1,22 @@
 function solution(num) {
-    var bin = num.toString(2);
-    var one_cnt = 0;
-    for(var i = 0; i < bin.length; i++){
-        if(bin[i] == '1'){
+    let bin = num.toString(2);
+    let one_cnt = 0;
+    for (let i = 0; i < bin.length; i++) {
+        if (bin[i] == '1') {
             one_cnt += 1;
         }
     }
-    var result = num;
-    while(true){
-        var res_one_cnt = 0;
+    let result = num;
+    while (true) {
+        let res_one_cnt = 0;
         ++result;
-        var result_bin = result.toString(2);
-        for(var j = 0; j < result_bin.length; j++){
-            if(result_bin[j] == '1'){
+        let result_bin = result.toString(2);
+        for (let j = 0; j < result_bin.length; j++) {
+            if(result_bin[j] == '1') {
                 res_one_cnt += 1;
             }
         }
-        if(one_cnt == res_one_cnt){
+        if (one_cnt == res_one_cnt) {
             return result;
         }
     }
